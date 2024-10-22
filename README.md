@@ -1,3 +1,11 @@
+MATLAB 2023 scripts for chapter 
+“Numerical continuation in PDE -- wavetrains and invasion in the Swift-Hohenberg equation” 
+by 
+Ryan Goh (Boston University, USA), rgoh@bu.edu
+David Lloyd (University of Surrey), d.lloyd@surrey.ac.uk
+Jens D.M. Rademacher (Universit\"at Hamburg), jens.rademacher@uni-hamburg.de
+
+
 Directories (see readme files in side each directory for more detail on how to run each code)
 
  - /Eckhaus_Zig-zag:: Matlab codes to compute and continue stability boundaries for wavetrains. Used to create figures in Sec. 1.3 and 1.4
