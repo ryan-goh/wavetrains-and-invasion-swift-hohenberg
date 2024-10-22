@@ -2,7 +2,9 @@ MATLAB 2023 scripts for chapter
 “Numerical continuation in PDE -- wavetrains and invasion in the Swift-Hohenberg equation” 
 by 
 Ryan Goh (Boston University, USA), rgoh@bu.edu
+
 David Lloyd (University of Surrey), d.lloyd@surrey.ac.uk
+
 Jens D.M. Rademacher (Universit\"at Hamburg), jens.rademacher@uni-hamburg.de
 
 
