@@ -1,0 +1,78 @@
+MATLAB 2023 scripts for chapter 
+“Numerical continuation in PDE -- wavetrains and invasion in the Swift-Hohenberg equation” 
+by 
+Ryan Goh (Boston University, USA), rgoh@bu.edu
+David Lloyd (University of Surrey), d.lloyd@surrey.ac.uk
+Jens D.M. Rademacher (Universit\"at Hamburg), jens.rademacher@uni-hamburg.de
+
+Computes and continues pulled pattern-forming invasion fronts in the Swift-Hohenberg equation, as shown in sec. 1.5 of the chapter.
+
+%%%Run test_script.m to get started
+
+%%based on codes used by RG and Arnd Scheel to study quenched pattern-forming fronts in the papers:
+-R. Goh, A. Scheel. Growing patterns
+Nonlinearity 36 R1, 2023. ;
+- M. Avery, R. Goh, O. Goodloe, A. Milewski, A. Scheel. Growing stripes, with and without wrinkles
+SIAM J. Appl. Dyn. Sys., 18 (2019), 1078 â€“ 1117.
+
+
+%%Main continuation file is main_fcn.m
+    Some functionality not operable right now:
+      ->GPU computing is not coded up correctly
+      -> Some of the grid_*.m codes don't seem to work properly (extending the domain seems to change where the right far-field needs to be cutoff)
+
+    General structure:
+    L1 - L58 initialize various quantities,
+    L60 - 129 initialize continuation, initial guess for solution, variables, prepare for continuation in one of the directions in par_direc (up or down in \mu)
+    L129 - 260    Main continuation loop: weights secant vector, computes residual, computes parameter derivatives (only once before Newton (to save on function evaluations)) performs newton grmes stepping,
+    L260 - L 371 Newton control and adaptation: measurement and cases
+    L373 - end  save/store data, readjust continuation parameters, define new secant, change step-size if needed,
+
+%% f0.m
+  Continuation vector consists of
+    w(1:N) - core function (in physical space \zeta,\tau, concatenated into vector )
+    w(N+1) - Re \alpha
+    w(N+2) - Im \alpha
+    w(N+3) - Re \beta
+    w(N+4) - Im \beta
+    w(N+5) - Re \nu
+    w(N+6) - Im \nu
+    w(N+7) - ellx (wavenumber k)
+    w(N+8) - cx (invasion speed c)
+    w(N+9) - \mu (onset parameter) --> principal continuation parameter
+
+
+  Main function file, given an input vector w, computes far-field roll and extends to large domain (using roll_ext.m), evaluates nonlinear function for the core, as well as equations for the dispersion relation double root (d0* and d1*), transversality conditions (b0, b1), and phase conditions (p0, p1), and secant conditinuation
+
+%% f1.m
+  Main jacobian evaluation. Computes the linearization of f0 for use by gmres. Inputs w, dw, and the derivatives of f0 with respect to parameters.
+
+
+%%% init_Newton:
+    Controlling continuation parameters, newton/gmres tolerances, tolerances for adaptive re-meshing
+
+%%% set_domain_size.m
+      Sets computational domains for small far-field solver and large scale core solver
+
+%%init_SH_discr.m
+        Defines the Fourier and spatial grids
+        Initializes linear operator and preconditioners (both as Fourier Multipliers)
+        Defines cutoff functions and associated commutators with the linear operator
+        Also defines region to evaluate one of the phase conditions
+
+%% w_init.m
+Defines first initial guess for newton solver
+
+%%% grid_*.m are all functions which main_fcn.m calls to extend/reduce domain in physical/fourier space to efficiently keep core function localized away from boundary
+
+%%init_small_grid.m
+Sets up the grid, linear operator, and preconditioner for the small domain far-field solver, finds first roll solution for most unstable wavenumber k = 1.
+
+%%unit_roll.m
+  Solves for periodic roll for a given mu and wavenumber ellx, uses operators defined in init_small_grid.m
+
+%% plotting.m
+  Plots solutions (full front, core, leading edge tail) as continuation runs, as well as c and k against \mu
+
+%%profile_plotter.m
+    Use after the continuation is done. Loads continuation parameter data to plot c and k against mu, also plots solution profiles for three \mu values along these curves. 

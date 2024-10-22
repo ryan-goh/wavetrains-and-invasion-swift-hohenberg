@@ -1,0 +1,42 @@
+% plot both the Eckhaus and Zig-zag boundaries
+% load zig-zag and Ekhaus boundary data
+zz = load('Zig_zag_run_1/branch.mat');
+EK1= load('Eckhaus_run_1/branch.mat');
+EK2= load('Eckhaus_run_2/branch.mat');
+
+ff=figure(1); hold on;
+plot(zz.branch(:,3),zz.branch(:,end),'-r','LineWidth',3);
+plot(EK1.branch(:,3),EK1.branch(:,end),'b','LineWidth',3);
+plot(EK2.branch(:,3),EK2.branch(:,end),'b','LineWidth',3);
+
+xlabel('$\mu$','Interpreter','Latex');
+ylabel('$k$','Interpreter','Latex');
+ax = gca;
+ax.FontSize = 20;
+ax.TickLabelInterpreter = 'latex';
+axis tight;
+title('Eckhaus and Zig-zag instability boundaries')
+legend('Zig-zag boundary','Eckhaus bounday');
+%
+zx=zz.branch(:,3);
+zy=zz.branch(:,end);
+zm=min(zy)*ones(numel(z),1);
+patch(z,z2, 'r', 'EdgeColor','r', 'LineStyle','--', 'FaceAlpha',0.25)
+%% with lower k boundary
+EKm= load('Eckhaus_run_2_ksm-/branch.mat');
+EK= load('Eckhaus_run_2_ksm/branch.mat');
+EK2= load('Eckhaus_run_2_ksm2/branch.mat');
+EK3= load('Eckhaus_run_2_ksm3/branch.mat');
+EK4= load('Eckhaus_run_2_ksm4/branch.mat');
+EK5= load('Eckhaus_run_2_ksm5/branch.mat');
+plot(EKm.branch(:,3),EKm.branch(:,end),'b','LineWidth',3); 
+plot(EK.branch(:,3),EK.branch(:,end),'b','LineWidth',3); 
+plot(EK.branch(:,3),EK.branch(:,end),'b','LineWidth',3);
+plot(EK2.branch(:,3),EK2.branch(:,end),'b','LineWidth',3);
+plot(EK3.branch(:,3),EK3.branch(:,end),'b','LineWidth',3);
+plot(EK4.branch(:,3),EK4.branch(:,end),'b','LineWidth',3);
+plot(EK5.branch(:,3),EK5.branch(:,end),'b','LineWidth',3);
+%hold off;
+legend('Zig-zag boundary','Eckhaus bounday');
+%%
+saveas(ff,'Busse.eps','epsc');
