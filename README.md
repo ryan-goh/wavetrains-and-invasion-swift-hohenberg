@@ -15,3 +15,5 @@ Directories (see readme files in side each directory for more detail on how to r
  - /sh-front_commented::  Matlab codes to compute and continue pulled pattern forming fronts in the supercritical Swift-Hohenberg equation. Used to create figures in Sec. 1.5
 
  - sh_abs_spec.nb - Mathematica Code for computing the absolute and essential spectrum (in both unweighted and exponentially weighted spaces)
+
+- /sh-auto-wavetrain-existence:: auto and matlab codes for plotting the bifurcation diagrams of wavetrains. Used for figures in Sec. 1.2
