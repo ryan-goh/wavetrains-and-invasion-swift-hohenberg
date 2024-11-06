@@ -13,9 +13,16 @@ p.savefig("wt_12_mu-0p9.pdf")
 p=plot('roll_half_NBC_mu-01_cubic_fine',color_list="black",type="solution",label=20)
 p.savefig("wt_20_mu-0p1.pdf")
 
-# export bif-dia (same with mu-0p1)
+# export bif-dia mu 0.1
+bd=loadbd('roll_half_NBC_mu-0p1_cubic_fine')
+bd.writeRawFilename('wt_bif_mu-0p1.txt')
+
+# export solution number 20
+bd(12).writeRawFilename('wt_bif_mu-0p1_sol20.txt')
+
+# export bif-dia mu 0.9
 bd=loadbd('roll_half_NBC_mu-0p9_cubic_fine')
 bd.writeRawFilename('wt_bif_mu-0p9.txt')
 
-# export (same with #20 for mu-0p1)
+# export solution number 12
 bd(12).writeRawFilename('wt_bif_mu-0p9_sol12.txt')
