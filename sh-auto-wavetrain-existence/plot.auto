@@ -10,7 +10,7 @@ p.savefig("wt_bif_mu-0p1.pdf")
 p=plot('roll_half_NBC_mu-0p9_cubic_fine',color_list="black",type="solution",label=12)
 p.savefig("wt_12_mu-0p9.pdf")
 
-p=plot('roll_half_NBC_mu-01_cubic_fine',color_list="black",type="solution",label=20)
+p=plot('roll_half_NBC_mu-0p1_cubic_fine',color_list="black",type="solution",label=20)
 p.savefig("wt_20_mu-0p1.pdf")
 
 # export bif-dia mu 0.1
