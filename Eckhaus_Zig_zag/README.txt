@@ -15,7 +15,7 @@ Run each of these cell-by-cell!
 
 1. Computation of upper Eckhaus boundary: continuation_EK_boundary_upper.m
 
-2. Computation of zigzag boundary: continuation_EK_boundary_lower.m
+2. Computation of zigzag boundary: continuation_Zig_zag_boundary
 
 3. Computation of lower Eckhaus boundary (slower): continuation_EK_boundary_lower.m
 
